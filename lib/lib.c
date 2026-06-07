@@ -21,8 +21,8 @@ typedef double        real;
 typedef uint8_t       boolean;
 
 /* -- I/O primitives -- */
-#if defined(readChar)
-char readChar (void)
+#if defined(READ_CHAR)
+char READ_CHAR (void)
 {
     char c;
     read(0, &c, 1);
@@ -30,8 +30,8 @@ char readChar (void)
 }
 #endif
 
-#if defined(readString)
-void readString (langint maxLen, char buf[static maxLen])
+#if defined(READ_STRING)
+void READ_STRING (langint maxLen, char buf[static maxLen])
 {
     long i = 0;
     while (i < maxLen - 1)
@@ -46,8 +46,8 @@ void readString (langint maxLen, char buf[static maxLen])
 }
 #endif
 
-#if defined(char)
-unsigned char readByte(void)
+#if defined(READ_BYTE)
+byte READ_BYTE (void)
 {
     byte result = 0;
     char c;
@@ -59,8 +59,8 @@ unsigned char readByte(void)
 }
 #endif
 
-#if defined(readInteger)
-langint readInteger (void)
+#if defined(READ_INTEGER)
+langint READ_INTEGER (void)
 {
     long value = 0;
     int8_t sign = 1;
@@ -76,8 +76,8 @@ langint readInteger (void)
 }
 #endif
 
-#if defined(readBoolean)
-boolean readBoolean (void)
+#if defined(READ_BOOLEAN)
+boolean READ_BOOLEAN (void)
 {
 	char buf[6];
 	buf[0] = readChar();
@@ -86,23 +86,23 @@ boolean readBoolean (void)
 }
 #endif
 
-#if defined(writeChar)
-void writeChar (char c)
+#if defined(WRITE_CHAR)
+void WRITE_CHAR (char c)
 {
     write(1, &c, 1);
 }
 #endif
 
-#if defined(writeString)
-void writeString (char *s)
+#if defined(WRITE_STRING)
+void WRITE_STRING (char *s)
 {
     while (*s)
         writeChar(*s++);
 }
 #endif
 
-#if defined(writeByte)
-void writeByte (byte n)
+#if defined(WRITE_BYTE)
+void WRITE_BYTE (byte n)
 {
     char digits[DIGITS(8)];
     char count = 0;
@@ -117,8 +117,8 @@ void writeByte (byte n)
 }
 #endif
 
-#if defined(writeInteger)
-void writeInteger (langint n)
+#if defined(WRITE_INTEGER)
+void WRITE_INTEGER (langint n)
 {
     char digits[DIGITS(BITS)];
     char count = 0;
@@ -135,8 +135,8 @@ void writeInteger (langint n)
 }
 #endif
 
-#if defined(writeBoolean)
-void writeBoolean (boolean b)
+#if defined(WRITE_BOOLEAN)
+void WRITE_BOOLEAN (boolean b)
 {
 	if (b) writeString("true");
 	else   writeString("false");
@@ -146,115 +146,114 @@ void writeBoolean (boolean b)
 /* -- math functions -- */
 
 #if defined(abs)
-langint abs (langint n)
+langint ABS (langint n)
 {
 	return __builtin_labs(n);
 }
 #endif
 
 #if defined(fabs)
-real fabs (real r)
+real FABS (real r)
 {
 	return __builtin_fabs(r);
 }
 #endif
 
 #if defined(sqrt)
-real sqrt (real r)
+real SQRT (real r)
 {
 	return __builtin_sqrt(r);
 }
 #endif
 
 #if defined(sin)
-real sin (real r)
+real SIN (real r)
 {
 	return __builtin_sinl(r);
 }
 #endif
 
 #if defined(cos)
-real cos (real r)
+real COS (real r)
 {
 	return __builtin_cosl(r);
 }
 #endif
 
 #if defined(tan)
-real tan (real r)
+real TAN (real r)
 {
 	return __builtin_tanl(r);
 }
 #endif
 
 #if defined(arctan)
-real arctan (real r)
+real ARCTAN (real r)
 {
 	return __builtin_atanl(r);
 }
 #endif
 
 #if defined(exp)
-real exp (real r)
+real EXP (real r)
 {
 	return __builtin_exp(r);
 }
 #endif
 
 #if defined(ln)
-real ln (real r)
+real LN (real r)
 {
 	return __builtin_log(r);
 }
 #endif
 
 #if defined(pi)
-real pi (void)
+real PI (void)
 {
 	return __builtin_acos(-1.0);
 }
 #endif
 
-
 /* -- Type conversion helpers -- */
 
 #if defined(trunc)
-langint trunc (real r)
+langint TRUNC (real r)
 {
 	return __builtin_trunc(r);
 }
 #endif
 
 #if defined(round)
-langint round (real r)
+langint ROUND (real r)
 {
 	return __builtin_llround(r);
 }
 #endif
 
 #if defined(ord)
-langint ord (char c)
+langint ORD (char c)
 {
 	return (langint)(c);
 }
 #endif
 
-#if defined(chr)
-char chr (langint n)
+#if defined(CHR)
+char CHR (langint n)
 {
 	return (char)(n);
 }
 #endif
 
-#if defined(extend)
-langint extend (byte b)
+#if defined(EXTEND)
+langint EXTEND (byte b)
 {
 	return (langint)b;
 }
 #endif
 
-#if defined(shrink)
-byte shrink (langint n)
+#if defined(SHRINK)
+byte SHRINK (langint n)
 {
 	return (byte)n;
 }
@@ -262,8 +261,8 @@ byte shrink (langint n)
 
 /* -- String manipulation -- */
 
-#if defined(strlen)
-long strlen (char *s)
+#if defined(STRLEN)
+long STRLEN (char *s)
 {
     long len = 0;
     while (*s++)
@@ -272,8 +271,8 @@ long strlen (char *s)
 }
 #endif
 
-#if defined(strcmp)
-langint strcmp (char *s1, char *s2)
+#if defined(STRCMP)
+langint STRCMP (char *s1, char *s2)
 {
     while (*s1 && *s2) {
         if (*s1 != *s2)
@@ -285,16 +284,16 @@ langint strcmp (char *s1, char *s2)
 }
 #endif
 
-#if defined(strcpy)
-void strcpy (char *dst, char *src)
+#if defined(STRCPY)
+void STRCPY (char *dst, char *src)
 {
     while (*src)
         *dst++ = *src++;
 }
 #endif
 
-#if defined(strcat)
-void strcat (char *dst, char *src)
+#if defined(STRCAT)
+void STRCAT (char *dst, char *src)
 {
     /* advance dst to its null terminator */
     while (*dst)

@@ -6,50 +6,50 @@
 
 #if defined(PCL)
 /* I/O */
-#	define readChar     readChar
-#	define readString   readString
-#	define readByte     readByte
-#	define readInteger  readInteger
-#	define readBoolean  readBoolean
-#	define writeChar    writeChar
-#	define writeString  writeString
-#	define writeByte    writeByte
-#	define writeInteger writeInteger
-#	define writeBoolean writeBoolean
+#	define READ_CHAR     readChar
+#	define READ_STRING   readString
+#	define READ_BYTE     readByte
+#	define READ_INTEGER  readInteger
+#	define READ_BOOLEAN  readBoolean
+#	define WRITE_CHAR    writeChar
+#	define WRITE_STRING  writeString
+#	define WRITE_BYTE    writeByte
+#	define WRITE_INTEGER writeInteger
+#	define WRITE_BOOLEAN writeBoolean
 /* math */
-#	define abs    abs
-#	define fabs   fabs
-#	define sqrt   sqrt
-#	define sin    sin
-#	define cos    cos
-#	define tan    tan
-#	define arctan arctan
-#	define exp    exp
-#	define ln     ln
-#	define pi     pi
+#	define ABS    abs
+#	define FABS   fabs
+#	define SQRT   sqrt
+#	define SIN    sin
+#	define COS    cos
+#	define TAN    tan
+#	define ARCTAN arctan
+#	define EXP    exp
+#	define LN     ln
+#	define PI     pi
 /* type conversion */
-#	define trunc trunc
-#	define round round
-#	define ord   ord
-#	define chr   chr
+#	define TRUNC trunc
+#	define ROUND round
+#	define ORD   ord
+#	define CHR   chr
 #elif defined(DANA)
 /* I/O */
-#	define readChar     readChar
-#	define readString   readString
-#	define readByte     readByte
-#	define readInteger  readInteger
-#	define writeChar    writeChar
-#	define writeString  writeString
-#	define writeByte    writeByte
-#	define writeInteger writeInteger
+#	define READ_CHAR     readChar
+#	define READ_STRING   readString
+#	define READ_BYTE     readByte
+#	define READ_INTEGER  readInteger
+#	define WRITE_CHAR    writeChar
+#	define WRITE_STRING  writeString
+#	define WRITE_BYTE    writeByte
+#	define WRITE_INTEGER writeInteger
 /* type conversion */
-#	define extend extend
-#	define shrink shrink
+#	define EXTEND extend
+#	define SHRINK shrink
 /* string manipulation */
-#	define strlen strlen
-#	define strcmp strcmp
-#	define strcpy strcpy
-#	define strcat strcat
+#	define STRLEN strlen
+#	define STRCMP strcmp
+#	define STRCPY strcpy
+#	define STRCAT strcat
 #else
 #	error no supported language selected (-D[LANG])
 #endif
